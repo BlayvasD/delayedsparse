@@ -33,7 +33,8 @@ from sklearn.utils import check_random_state
 from sklearn.utils.fixes import np_version
 
 from sklearn.utils._logistic_sigmoid import _log_logistic_sigmoid
-from sklearn.externals.six.moves import xrange
+# from sklearn.externals.six.moves import xrange
+from six.moves import xrange
 from sklearn.utils.sparsefuncs_fast import csr_row_norms
 from sklearn.utils.validation import check_array
 #from sklearn.exceptions import NonBLASDotWarning
@@ -51,7 +52,8 @@ def norm(x):
 
 
 # Newer NumPy has a ravel that needs less copying.
-if np_version < (1, 7, 1):
+# if np_version < (1, 7, 1):
+if False:
     _ravel = np.ravel
 else:
     _ravel = partial(np.ravel, order='K')
@@ -142,7 +144,8 @@ def _have_blas_gemm():
 
 
 # Only use fast_dot for older NumPy; newer ones have tackled the speed issue.
-if np_version < (1, 7, 2) and _have_blas_gemm():
+# if np_version < (1, 7, 2) and _have_blas_gemm():
+if False and _have_blas_gemm():
     def fast_dot(A, B):
         """Compute fast dot products directly calling BLAS.
 
